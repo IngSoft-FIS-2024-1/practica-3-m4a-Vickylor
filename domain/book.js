@@ -24,52 +24,56 @@ class Book {
   }
 
   getWords() {
-    // TODO
+    return this.#words;
   }
 
   setTitle(title) {
     if (typeof (title) !== 'string') {
-      throw new Error();
+      throw new Error('El titulo no puede ser vacio');
     }
     title = title.trim();
     if (title.length === 0) {
-      throw new Error();
+      throw new Error('El titulo no puede ser vacio');
     }
     this.#title = title;
   }
+  //trim saca los espacios en blancos en inicio y fin del string
 
   setAuthor(author) {
     if (typeof (author) !== 'string') {
-      throw new Error()
+      throw new Error('Autor debe contener letras');
     }
     author = author.trim();
     if (author.length === 0) {
-      author = "Anónimo";
+      author = 'Anónimo';
     }
     this.#author = author;
   }
 
   setPages(pages) {
     if (typeof (pages) !== 'number' || isNaN(pages)) {
-      throw new Error()
+      throw new Error('Página debe ser un número');
     }
     if (pages < 1) {
-      throw new Error()
+      throw new Error('Página debe ser un número mayor a 1');
     }
     pages = Math.trunc(pages);
     this.#pages = pages;
   }
 
-  setWords() {
-    // TODO
+  setWords(words) {
+    if (typeof (words) !== 'number' || isNaN(words)) {
+      throw new Error('Las palabras deben ser un número');
+    }
+    this.#words = words;
   }
 
   wordsPerPage() {
-    // TODO
+    return this.getWords() / this.getPages();
   }
 
   toString() {
-    return `Título: ${this.#title} Autor: ${this.#author} Páginas: ${this.#pages}`;
+    return `Título: ${this.#title} Autor: ${this.#author} Páginas: ${this.#pages} Palabras: ${this.#words}`;
   }
 }
 
